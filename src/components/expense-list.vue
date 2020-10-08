@@ -1,5 +1,6 @@
 <template>
   <section class="expence-list-container">
+    <mode-header />
     <expence-preview
       v-for="expence in expences"
       :expence="expence"
@@ -10,12 +11,14 @@
 
 <script>
 import expencePreview from './expense-preview.vue'
+import modeHeader from './mode-header.vue'
 export default {
   props: {
     expences: Array
   },
   components: {
-    expencePreview
+    expencePreview,
+    modeHeader
   }
 }
 </script>
