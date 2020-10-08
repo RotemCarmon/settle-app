@@ -24,14 +24,19 @@ const EXPENCES = [
     },
 ];
 
-function getExpences() {
+window.exps = EXPENCES
+
+ async function getExpences() {
     return EXPENCES;
 }
 
-function addExpence() {
-    const expences = getExpences();
-    const newExpence = _createExpence();
+ async function addExpence(date, description, amount, owner) {
+    const expences = await getExpences();
+    const newExpence = _createExpence(date, description, amount, owner);
     expences.unshift(newExpence);
+
+    console.log('The new added expence is:', newExpence );
+    return expences
 }
 
 export default {
@@ -39,10 +44,10 @@ export default {
     addExpence,
 };
 
-function _createExpence(date, description, amount, owner = 'rotem') {
+function _createExpence(date, description, amount, owner) {
     let prevId = _getLastId();
     return {
-        id: prevId++,
+        _id: ++prevId,
         date,
         description,
         amount,
@@ -50,8 +55,8 @@ function _createExpence(date, description, amount, owner = 'rotem') {
     };
 }
 
-function _getLastId() {
-    const expences = getExpences();
+async function _getLastId() {
+    const expences = await getExpences()
     const ids = expences.map((expence) => {
         return expence._id;
     });
