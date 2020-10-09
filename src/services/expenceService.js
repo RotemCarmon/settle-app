@@ -1,6 +1,6 @@
-console.log('Expence Service');
+console.log('Expense Service');
 
-const EXPENCES = [
+const EXPENSES = [
     {
         _id: 1,
         date: '8/10/2020',
@@ -23,42 +23,44 @@ const EXPENCES = [
         owner: 'rotem',
     },
 ];
+window.exps = EXPENSES
 
-window.exps = EXPENCES
 
- async function getExpences() {
-    return EXPENCES;
+ async function getExpenses() {
+    return EXPENSES;
 }
 
- async function addExpence(date, description, amount, owner) {
-    const expences = await getExpences();
-    const newExpence = _createExpence(date, description, amount, owner);
-    expences.unshift(newExpence);
+remove
 
-    console.log('The new added expence is:', newExpence );
-    return expences
+ async function addExpense(date, description, amount, owner) {
+    const expenses = await getExpenses();
+    const newExpense = _createExpense(date, description, amount, owner);
+    expenses.unshift(newExpense);
+
+    console.log('The new added expense is:', newExpense );
+    return expenses
 }
 
 export default {
-    getExpences,
-    addExpence,
+    getExpenses,
+    addExpense,
 };
 
-function _createExpence(date, description, amount, owner) {
+function _createExpense(date, description, amount, owner) {
     let prevId = _getLastId();
     return {
         _id: ++prevId,
-        date,
         description,
+        date,
         amount,
         owner,
     };
 }
 
 async function _getLastId() {
-    const expences = await getExpences()
-    const ids = expences.map((expence) => {
-        return expence._id;
+    const expenses = await getExpenses()
+    const ids = expenses.map((expense) => {
+        return expense._id;
     });
     return Math.max(...ids);
 }

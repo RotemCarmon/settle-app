@@ -1,23 +1,23 @@
 <template>
-  <section class="expence-list-container">
+  <section class="expense-list-container">
     <mode-header />
-    <expence-preview
-      v-for="expence in expences"
-      :expence="expence"
-      :key="expence._id"
+    <expense-preview
+      v-for="expense in expenses"
+      :expense="expense"
+      :key="expense._id"
     />
   </section>
 </template>
 
 <script>
-import expencePreview from './expense-preview.vue'
+import expensePreview from './expense-preview.vue'
 import modeHeader from './mode-header.vue'
 export default {
   props: {
-    expences: Array
+    expenses: Array
   },
   components: {
-    expencePreview,
+    expensePreview,
     modeHeader
   }
 }

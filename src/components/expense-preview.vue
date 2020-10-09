@@ -1,11 +1,11 @@
 <template>
-    <section class="expence-preview-container">
-        <div class="expence-preview">
+    <section class="expense-preview-container">
+        <div class="expense-preview">
             <img class="icon x-mark-icon" src="@/assets/icons/x-mark.png" alt="x-mark-icon" />
             <img class="icon pencil-icon" src="@/assets/icons/pencil.png" alt="pencil-icon" />
-            <h2>{{ expence.date }}</h2>
-            <h2>{{ expence.description }}</h2>
-            <h2>&#8362;{{ expence.amount }}</h2>
+            <h2>{{ expense.date }}</h2>
+            <h2>{{ expense.description }}</h2>
+            <h2>&#8362;{{ expense.amount }}</h2>
         </div>
         <div class="marks">
             <div class="mark split" :class="mark === 'split' ? 'marked' : ''">
@@ -21,7 +21,7 @@
 <script>
 export default {
     props: {
-        expence: Object,
+        expense: Object,
     },
     data() {
         return {
@@ -32,11 +32,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.expence-preview-container {
+.expense-preview-container {
     display: flex;
     justify-content: center;
     margin-bottom: 8px;
-    .expence-preview {
+    .expense-preview {
         position: relative;
         display: grid;
         grid-template-columns: 40px 40px 95px auto 90px;

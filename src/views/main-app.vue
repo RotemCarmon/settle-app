@@ -1,38 +1,38 @@
 <template>
     <section class="main-container">
-        <h1>Expences</h1>
-        <input-section @add-expence="addExpence" />
-        <expense-list :expences="expencesToShow" />
+        <h1>Expenses</h1>
+        <input-section @add-expense="addExpense" />
+        <expense-list :expenses="expensesToShow" />
     </section>
 </template>
 
 <script>
-import expenceService from '../services/expenceService.js';
+import expenseService from '../services/expenseService.js';
 import expenseList from '../components/expense-list';
 import inputSection from '../components/input-section';
 export default {
     data() {
         return {
-            expences: [],
+            expenses: [],
         };
     },
     created() {
-        this.loadExpences();
+        this.loadExpenses();
     },
     methods: {
-        async loadExpences() {
-            this.expences = await expenceService.getExpences();
+        async loadExpenses() {
+            this.expenses = await expenseService.getExpenses();
         },
-        async addExpence(payload) {
+        async addExpense(payload) {
             const { date, description, amount, owner } = payload;
-            const exps = await expenceService.addExpence(date, description, amount, owner);
-            console.log('expences',exps);
-            this.expences = [...exps];
+            const exps = await expenseService.addExpense(date, description, amount, owner);
+            console.log('expenses',exps);
+            this.expenses = [...exps];
         },
     },
     computed: {
-        expencesToShow() {
-            return this.expences;
+        expensesToShow() {
+            return this.expenses;
         },
     },
     components: {

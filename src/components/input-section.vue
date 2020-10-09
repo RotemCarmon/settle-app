@@ -1,10 +1,10 @@
 <template>
     <div class="form-row">
-        <input v-model="expence.date" type="date" placeholder="Date" />
-        <input v-model="expence.description" type="text" placeholder="Description" />
-        <input v-model="expence.amount" type="number" placeholder="Amount" />
-        <input v-model="expence.owner" type="text" placeholder="Owner" />
-        <button @click="onAddExpence()">Add</button>
+        <input v-model="expense.date" type="date" placeholder="Date" />
+        <input v-model="expense.description" type="text" placeholder="Description" />
+        <input v-model="expense.amount" type="number" placeholder="Amount" />
+        <input v-model="expense.owner" type="text" placeholder="Owner" />
+        <button @click="onAddExpense()">Add</button>
     </div>
 </template>
 
@@ -12,7 +12,7 @@
 export default {
     data() {
         return {
-            expence: {
+            expense: {
                 date: '',
                 description: '',
                 amount: '',
@@ -21,13 +21,13 @@ export default {
         };
     },
     methods: {
-        onAddExpence() {
-            this.$emit('add-expence', { ...this.expence, date: this.formattedDate});
+        onAddExpense() {
+            this.$emit('add-expense', { ...this.expense, date: this.formattedDate});
         },
     },
     computed: {
         formattedDate() {
-            let date = this.expence.date;
+            let date = this.expense.date;
             return date
                 .split('-')
                 .reverse()
