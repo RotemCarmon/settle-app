@@ -1,8 +1,9 @@
 import { createStore } from 'vuex'
+import recordStore from './modules/recordStore.js';
 
 export default createStore({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
+
+  modules: {
+    recordStore
+  }
 })

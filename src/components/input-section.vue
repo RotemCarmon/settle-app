@@ -1,10 +1,10 @@
 <template>
     <div class="form-row">
-        <input v-model="expense.date" type="date" placeholder="Date" />
-        <input v-model="expense.description" type="text" placeholder="Description" />
-        <input v-model="expense.amount" type="number" placeholder="Amount" />
-        <input v-model="expense.owner" type="text" placeholder="Owner" />
-        <button @click="onAddExpense()">Add</button>
+        <input v-model="record.date" type="date" placeholder="Date" />
+        <input v-model="record.description" type="text" placeholder="Description" />
+        <input v-model="record.amount" type="number" placeholder="Amount" />
+        <input v-model="record.owner" type="text" placeholder="Owner" />
+        <button @click="onAddRecord()">Add</button>
     </div>
 </template>
 
@@ -12,7 +12,7 @@
 export default {
     data() {
         return {
-            expense: {
+            record: {
                 date: '',
                 description: '',
                 amount: '',
@@ -21,19 +21,16 @@ export default {
         };
     },
     methods: {
-        onAddExpense() {
-            this.$emit('add-expense', { ...this.expense, date: this.formattedDate});
+        onAddRecord() {
+            // TODO: verify that the required inputs are filled
+            this.$store.dispatch({type: 'addRecord', record: this.record})
+
+            // this.$emit('add-record', { ...this.record, date: this.formattedDate});
         },
-    },
-    computed: {
-        formattedDate() {
-            let date = this.expense.date;
-            return date
-                .split('-')
-                .reverse()
-                .join('/');
-        },
-    },
+        getEmptyRecord(){
+            // Get an empty record
+        }
+    }
 };
 </script>
 
