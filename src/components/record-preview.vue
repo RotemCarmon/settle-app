@@ -1,18 +1,16 @@
 <template>
     <section class="record-preview-container">
-        <!-- Use contentEditable see p39 in Vue-Advanced -->
-        <div class="record-preview">
+        <div class="record-preview flex">
             <img
                 @click.prevent="onRemoveRecord"
                 src="@/assets/icons/x-mark.png"
                 alt="x-mark-icon"
                 class="icon x-mark-icon"
             />
-            <!-- <img @click="toggleEditMode" src="@/assets/icons/pencil.png" alt="pencil-icon" class="icon pencil-icon" /> -->
             
             <editable-content v-model="copyRecord.date"/>
             <editable-content v-model="copyRecord.description"/>
-            <editable-content v-model="copyRecord.amount"/>
+            <editable-content v-model="copyRecord.amount" :type="'price'" />
        
            
         </div>
@@ -42,24 +40,18 @@ export default {
     },
     created() {
         this.copyRecord = JSON.parse(JSON.stringify(this.record));
-        // console.log(this.copyRecord);
     },
     methods: {
         onRemoveRecord() {
             this.$store.dispatch({ type: 'removeRecord', recordId: this.record._id });
         },
         onUpdateRecord() {
-            console.log('updating', this.copyRecord);
             this.isEdit = false;
             this.$store.dispatch({ type: 'updateRecord', record: this.copyRecord });
         },
         toggleEditMode() {
             this.isEdit = !this.isEdit;
-        },
-        onEditContent(e) {
-            console.log('Editing');
-            console.log(e);
-        },
+        }
     },
     watch: {
         copyRecord: {
@@ -84,13 +76,13 @@ export default {
     .record-preview {
         position: relative;
         display: grid;
-        grid-template-columns: 40px 100px auto 90px;
+        grid-template-columns: 50px 120px auto 90px;
         width: 680px;
         padding: 8px 12px;
         margin-inline-end: 40px;
 
         color: #272733;
-        background-color: lightskyblue;
+        background-color: #56C596;
         border: 1px solid lightgrey;
         border-radius: 8px;
 
@@ -103,6 +95,8 @@ export default {
             font-weight: lighter;
         }
         img.icon {
+            align-self: center;
+            width: 18px;
             &:hover {
                 transition: 0.4s;
                 transform: scale(1.1);
