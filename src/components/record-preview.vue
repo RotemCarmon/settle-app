@@ -1,30 +1,34 @@
 <template>
     <section class="record-preview-container">
         <!-- Use contentEditable see p39 in Vue-Advanced -->
-        <div class="record-preview" :contenteditable="isEdit">
+        <div class="record-preview">
             <img
                 @click.prevent="onRemoveRecord"
                 src="@/assets/icons/x-mark.png"
                 alt="x-mark-icon"
                 class="icon x-mark-icon"
             />
-            <img @click="toggleEditMode" src="@/assets/icons/pencil.png" alt="pencil-icon" class="icon pencil-icon" />
-            <h2>{{ record.date }}</h2>
-            <h2>{{ record.description }}</h2>
-            <h2>&#8362;{{ record.amount }}</h2>
+            <!-- <img @click="toggleEditMode" src="@/assets/icons/pencil.png" alt="pencil-icon" class="icon pencil-icon" /> -->
+            
+            <editable-content v-model="copyRecord.date"/>
+            <editable-content v-model="copyRecord.description"/>
+            <editable-content v-model="copyRecord.amount"/>
+       
+           
         </div>
         <div class="marks">
-            <div class="mark split" :class="mode === 'split' ? 'marked' : ''">
-                <input type="radio" value="split" v-model="mode" />
+            <div class="mark split" :class="copyRecord.mode === 'split' ? 'marked' : ''">
+                <input type="radio" value="split" v-model="copyRecord.mode" />
             </div>
-            <div class="mark full" :class="mode === 'full' ? 'marked' : ''">
-                <input type="radio" value="full" v-model="mode" />
+            <div class="mark full" :class="copyRecord.mode === 'full' ? 'marked' : ''">
+                <input type="radio" value="full" v-model="copyRecord.mode" />
             </div>
         </div>
     </section>
 </template>
 
 <script>
+import editableContent from './common/editable-content.vue';
 export default {
     props: {
         record: Object,
@@ -32,41 +36,41 @@ export default {
     data() {
         return {
             mode: this.record.mode,
+            copyRecord: null,
             isEdit: false,
-            prevRecord: null
         };
+    },
+    created() {
+        this.copyRecord = JSON.parse(JSON.stringify(this.record));
+        // console.log(this.copyRecord);
     },
     methods: {
         onRemoveRecord() {
             this.$store.dispatch({ type: 'removeRecord', recordId: this.record._id });
         },
         onUpdateRecord() {
-            let record = { ...this.record };
-            record.mode = this.mode;
-            this.$store.dispatch({ type: 'updateRecord', record });
+            console.log('updating', this.copyRecord);
+            this.isEdit = false;
+            this.$store.dispatch({ type: 'updateRecord', record: this.copyRecord });
         },
         toggleEditMode() {
-            if (!this.isEdit) {
-                console.log('Coping...');
-                this.prevRecord = JSON.parse(JSON.stringify(this.record));
-            }
             this.isEdit = !this.isEdit;
+        },
+        onEditContent(e) {
+            console.log('Editing');
+            console.log(e);
         },
     },
     watch: {
-        mode(val) {
-            this.onUpdateRecord();
-        },
-        isEdit(newVal, oldVal) {
-            if (!newVal && oldVal) {
-                console.log('Was in edit mode and now is not!');
-                if(JSON.stringify(this.prevRecord) !== JSON.stringify(this.record)) {
-                    console.log('Record was edited');
-                    console.log('Prev', JSON.stringify(this.prevRecord));
-                    console.log('curr', JSON.stringify(this.record));
-                }
+        copyRecord: {
+            deep: true,
+            handler(){
+                this.onUpdateRecord();
             }
         },
+    },
+    components: {
+        editableContent,
     },
 };
 </script>
@@ -80,7 +84,7 @@ export default {
     .record-preview {
         position: relative;
         display: grid;
-        grid-template-columns: 40px 40px 100px auto 90px;
+        grid-template-columns: 40px 100px auto 90px;
         width: 680px;
         padding: 8px 12px;
         margin-inline-end: 40px;
