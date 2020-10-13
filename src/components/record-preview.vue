@@ -77,7 +77,8 @@ export default {
         position: relative;
         display: grid;
         grid-template-columns: 50px 120px auto 90px;
-        width: 680px;
+        // width: 680px;
+        width: 100%;
         padding: 8px 12px;
         margin-inline-end: 40px;
 

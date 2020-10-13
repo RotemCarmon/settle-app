@@ -17,7 +17,7 @@ export default {};
     display: flex;
     justify-content: center;
     .phantom-area {
-        width: 680px;
+        width: 100%;
         margin-inline-end: 40px;
     }
 

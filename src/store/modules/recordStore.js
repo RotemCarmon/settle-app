@@ -3,14 +3,14 @@ import recordService from '@/services/recordService.js';
 export default {
     state: {
         records: null,
-        total: 0,
+        breakdown: null,
     },
     getters: {
         getRecords(state) {
             return state.records;
         },
-        getTotal(state) {
-            return state.total;
+        getBreakdown(state) {
+            return state.breakdown;
         },
     },
     mutations: {
@@ -44,19 +44,16 @@ export default {
                 console.error(error);
             }
         },
-        setTotal(state, { total }) {
-            state.total = total;
+        setBreakdown(state, { breakdown }) {
+            state.breakdown = breakdown;
         },
     },
     actions: {
         async loadRecords(context) {
             const records = await recordService.getRecords();
-            console.log('loadRecords -> records', records);
-
             context.commit({ type: 'setRecords', records });
         },
         async removeRecord(context, { recordId }) {
-            // console.log('Before', context.state.records);
             await recordService.removeRecord(recordId);
             context.commit({ type: 'removeRecord', recordId });
         },
@@ -68,10 +65,9 @@ export default {
             const updatedRecord = await recordService.updateRecord(record);
             context.commit({ type: 'updateRecord', updatedRecord });
         },
-        async calculateTotal(context) {
-            const total = await recordService.calculate();
-            console.log("calculateTotal -> total", total)
-            context.commit({ type: 'setTotal', total });
+        async calculateBreakdown(context) {
+            const breakdown = await recordService.calculate();
+            context.commit({ type: 'setBreakdown', breakdown });
         },
     },
 };

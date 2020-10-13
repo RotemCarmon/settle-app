@@ -82,7 +82,6 @@ async function updateRecord(record) {
 }
 
 async function calculate() {
-    console.log('Calculating...');
     const records = await getRecords();
 
     return records.reduce((acc, record) => {
@@ -95,22 +94,6 @@ async function calculate() {
     }, {});
 }
 
-//###################################3
-// async function calculate() {
-    //     console.log('Calculating...');
-//     const records = await getRecords();
-
-//     return records.reduce((acc, record) => {
-    //         let amount = record.amount;
-    //         if (!acc[record.owner]) acc[record.owner] = {};
-    
-    //         let mode = acc[record.owner][record.mode];
-    //         acc[record.owner][record.mode] = mode ? (mode += amount) : amount;
-    
-    //         return acc;
-    //     }, {});
-    // }
-//###################################3
     
 // async function getRecordById(id){
 //     const records = await getRecords();

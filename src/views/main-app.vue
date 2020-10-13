@@ -1,6 +1,6 @@
 <template>
     <section class="main-container">
-        <status-bar :total="total" />
+        <status-bar :breakdown="breakdown" />
         <input-section />
         <record-list :records="recordsToShow" />
     </section>
@@ -11,10 +11,12 @@ import recordService from '../services/recordService.js';
 import statusBar from '../components/status/status-bar';
 import recordList from '../components/record-list';
 import inputSection from '../components/input-section';
+
 export default {
     created() {
         this.loadRecords();
-        this.calculateTotal();
+        this.calculateBreakdown();
+
     },
     methods: {
         async loadRecords() {
@@ -25,16 +27,16 @@ export default {
             const records = await recordService.addRecord(date, description, amount, owner);
             this.records = [...records];
         },
-        async calculateTotal() {
-            this.$store.dispatch('calculateTotal');
+        async calculateBreakdown() {
+            this.$store.dispatch('calculateBreakdown');
         },
     },
     computed: {
         recordsToShow() {
             return this.$store.getters.getRecords;
         },
-        total() {
-            return this.$store.getters.getTotal;
+        breakdown() {
+            return this.$store.getters.getBreakdown;
         },
     },
     components: {

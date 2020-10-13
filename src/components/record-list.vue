@@ -1,5 +1,5 @@
 <template>
-  <section class="record-list-container">
+  <section class="record-list-container  main-layout">
     <mode-header />
     <record-preview
       v-for="record in records"
@@ -23,4 +23,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.record-list-container{
+  padding: 20px;
+}
+
+</style>
