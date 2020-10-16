@@ -1,0 +1,21 @@
+.header-container {
+  background-color: #26887b;
+  padding: 26px;
+    .header {
+        flex-direction: row-reverse;
+        color: white;
+        
+        .hamburger {
+            font-size: 30px;
+            margin-inline-start: 65px;
+        }
+        .avatar-container{
+            // flex-direction: row-reverse;
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-columns: repeat(auto-fit, 30px);
+
+           
+        }
+    }
+}

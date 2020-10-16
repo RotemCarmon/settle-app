@@ -22,10 +22,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.record-list-container{
-  padding: 20px;
-}
-
-</style>

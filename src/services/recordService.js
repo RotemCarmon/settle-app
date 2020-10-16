@@ -1,3 +1,5 @@
+import httpService from './httpService'
+
 console.log('Record Service');
 
 const RECORDS = [
@@ -6,7 +8,7 @@ const RECORDS = [
         date: '28/09/2020',
         description: 'meat',
         amount: 140,
-        owner: 'jeri',
+        owner: 'rotem',
         mode: 'split',
     },
     {
@@ -30,7 +32,7 @@ const RECORDS = [
         date: '7/10/2020',
         description: 'shmpoo',
         amount: 149,
-        owner: 'jeri',
+        owner: 'rotem',
         mode: 'full',
     },
     {
@@ -47,38 +49,28 @@ window.records = RECORDS;
 var gLoggedInUser = 'rotem'
 
 async function getRecords() {
-    return RECORDS;
+    // return httpService.get(`record?${queryParams}`)
+    return httpService.get(`record`)
 }
 
-async function removeRecord(id) {
-    const records = await getRecords();
-    let idx = records.findIndex((record) => record._id === id);
-    if (idx === -1) throw new Error(`The record with id: ${id} was not found and was not deleted`);
-    const deletedRecord = records.splice(idx, 1)[0];
-
-    return deletedRecord;
+async function removeRecord(recordId) {
+  return httpService.delete(`record/${recordId}`, recordId);
 }
 
 async function addRecord(record) {
-    const records = await getRecords();
-    const { date, description, amount, owner } = record;
-    let formatedDate = formatDate(date);
+    
+    let formatedDate = formatDate(record.date);
+    record.date = formatedDate;
+    record.mode = 'split'
+    return httpService.post('record', record)
 
-    const newRecord = await _createRecord(formatedDate, description, amount, owner);
-    records.unshift(newRecord);
-
-    console.log('The new added record is:', newRecord);
-    return newRecord;
 }
 
 async function updateRecord(record) {
-    // console.log('The recird that needs to be updates is:', record);
-    const recordId = record._id;
-    const records = await getRecords();
-    let idx = records.findIndex((record) => record._id === recordId);
-    if (idx === -1) throw new Error(`The record with id: ${id} was not found and was not updated`);
-    records.splice(idx, 1, record)[0];
-    return record;
+    record.amount = +record.amount;
+    await httpService.put(`record/${record._id}`, record)
+    return record
+
 }
 
 async function calculate() {
@@ -91,14 +83,9 @@ async function calculate() {
            acc[record.mode] += amount
        }
         return acc;
-    }, {});
+    }, {split:0, full:0});
 }
 
-    
-// async function getRecordById(id){
-//     const records = await getRecords();
-//     return records.find(record => record._id === id)
-// }
 
 export default {
     getRecords,
@@ -116,7 +103,7 @@ async function _createRecord(date, description, amount, owner) {
         date,
         amount,
         owner,
-        isSplit: true,
+        mode: 'split'
     };
 }
 

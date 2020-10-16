@@ -1,6 +1,6 @@
 <template>
     <h2 :class="{price: isPrice}" @click="isEdit = true" @blur="updateValue" @keydown.enter.prevent="updateValue" :contenteditable="isEdit">
-       <span v-if="isPrice">&#8362;</span> {{ modelValue }}
+        {{ modelValue }}
     </h2>
 </template>
 
@@ -29,7 +29,7 @@ export default {
     methods: {
         updateValue(ev) {
             this.isEdit = false;
-            this.$emit('update:modelValue', ev.target.innerText);
+            this.$emit('update:modelValue', value);
         }
     },
 };

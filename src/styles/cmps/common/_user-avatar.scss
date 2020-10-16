@@ -1,0 +1,15 @@
+.user-avatar-container {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  border: 2px solid white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -1px;
+  
+
+  &.curr-user{
+    grid-column: -1;
+    z-index: 10;
+}
+}

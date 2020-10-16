@@ -6,3 +6,12 @@
 @import "./basics/helpers";
 @import "./basics/layout";
 @import "./basics/buttons";
+
+
+// COMPONENTS
+
+@import "./cmps/common/header-cmp";
+@import "./cmps/common/user-avatar";
+
+@import "./cmps/record/record-preview";
+@import "./cmps/record/record-add";

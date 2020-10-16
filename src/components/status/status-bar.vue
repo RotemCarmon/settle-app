@@ -5,8 +5,8 @@
                 <sum-status :amount="total" />
             </div>
             <div class="break-down-container flex">
-                <sum-status :amount="breakdown.full" :icon="'money'" />
-                <sum-status :amount="breakdown.split" :icon="'split-money'" />
+                <sum-status title="This amount is to be split between all group members" :amount="breakdown.split" :icon="'split-money'" />
+                <sum-status title="This amount you should be refunded in full" :amount="breakdown.full" :icon="'money'" />
             </div>
         </div>
     </section>
@@ -37,7 +37,10 @@ export default {
 
 <style lang="scss" scoped>
 .status-bar-container {
-    background-color: #25523b;
+    background-color: #26887b;
     padding: 8px;
+}
+.break-down-container :last-child{
+    margin-inline-end: 0;
 }
 </style>

@@ -19,7 +19,6 @@ export default {
         },
         removeRecord(state, { recordId }) {
             const records = JSON.parse(JSON.stringify(state.records));
-            console.log('recordId', recordId);
             try {
                 const idx = records.findIndex((record) => record._id === recordId);
                 if (idx === -1) throw Error('Idx was not found');
@@ -34,8 +33,8 @@ export default {
         },
         updateRecord(state, { updatedRecord }) {
             const records = JSON.parse(JSON.stringify(state.records));
-            const recordId = updatedRecord._id;
             try {
+                const recordId = updatedRecord._id;
                 const idx = records.findIndex((record) => record._id === recordId);
                 if (idx === -1) throw Error('Idx was not found');
                 records.splice(idx, 1, updatedRecord);
@@ -59,10 +58,12 @@ export default {
         },
         async addRecord(context, { record }) {
             const newRecord = await recordService.addRecord(record);
+            console.log("addRecord -> newRecord", newRecord)
             context.commit({ type: 'addRecord', newRecord });
         },
         async updateRecord(context, { record }) {
             const updatedRecord = await recordService.updateRecord(record);
+            if(!updatedRecord) return
             context.commit({ type: 'updateRecord', updatedRecord });
         },
         async calculateBreakdown(context) {

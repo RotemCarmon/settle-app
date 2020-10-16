@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import mainApp from '../views/main-app.vue'
+import recordApp from '../views/record-app.vue'
+import loginPage from '../views/login-page.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'main-app',
-    component: mainApp
+    name: 'record-app',
+    component: recordApp
+  },
+  {
+    path: '/login',
+    name: 'login-page',
+    component: loginPage
   }
 ]
 
