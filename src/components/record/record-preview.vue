@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import editableContent from './common/editable-content.vue';
+import editableContent from '../common/editable-content.vue';
 export default {
     props: {
         record: Object,

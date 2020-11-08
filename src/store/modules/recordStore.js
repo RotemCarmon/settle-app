@@ -9,9 +9,9 @@ export default {
         getRecords(state) {
             return state.records;
         },
-        getBreakdown(state) {
-            return state.breakdown;
-        },
+        // getBreakdown(state) {
+        //     return state.breakdown;
+        // },
     },
     mutations: {
         setRecords(state, { records }) {
@@ -43,9 +43,9 @@ export default {
                 console.error(error);
             }
         },
-        setBreakdown(state, { breakdown }) {
-            state.breakdown = breakdown;
-        },
+        // setBreakdown(state, { breakdown }) {
+        //     state.breakdown = breakdown;
+        // },
     },
     actions: {
         async loadRecords(context) {
@@ -66,9 +66,9 @@ export default {
             if(!updatedRecord) return
             context.commit({ type: 'updateRecord', updatedRecord });
         },
-        async calculateBreakdown(context) {
-            const breakdown = await recordService.calculate();
-            context.commit({ type: 'setBreakdown', breakdown });
-        },
+        // async calculateBreakdown(context) {
+        //     const breakdown = await recordService.calculate();
+        //     context.commit({ type: 'setBreakdown', breakdown });
+        // },
     },
 };

@@ -13,14 +13,14 @@
 
 import recordService from '../services/recordService.js';
 import statusBar from '../components/status/status-bar';
-import recordList from '../components/record-list';
-import recordAdd from '../components/record-add';
+import recordList from '../components/record/record-list';
+import recordAdd from '../components/record/record-add';
 import { handleError } from 'vue';
 
 export default {
     created() {
         this.loadRecords();
-        this.calculateBreakdown();
+        // this.calculateBreakdown();
 
     },
     methods: {
@@ -32,9 +32,9 @@ export default {
             const records = await recordService.addRecord(date, description, amount, owner);
             this.records = [...records];
         },
-        async calculateBreakdown() {
-            this.$store.dispatch('calculateBreakdown');
-        },
+        // async calculateBreakdown() {
+        //     this.$store.dispatch('calculateBreakdown');
+        // },
     },
     computed: {
         recordsToShow() {
@@ -43,18 +43,18 @@ export default {
             if(!records || !records.length) return null
             return records
         },
-        breakdown() {
-            return this.$store.getters.getBreakdown;
-        },
+        // breakdown() {
+        //     return this.$store.getters.getBreakdown;
+        // },
     },
-    watch:{
-        recordsToShow:{
-            deep:true,
-            handler(){
-                this.calculateBreakdown()
-            }
-        }
-    },
+    // watch:{
+    //     recordsToShow:{
+    //         deep:true,
+    //         handler(){
+    //             this.calculateBreakdown()
+    //         }
+    //     }
+    // },
     components: {
         recordList,
         recordAdd,

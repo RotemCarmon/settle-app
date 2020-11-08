@@ -16,6 +16,11 @@ const routes = [
     component: loginPage
   },
   {
+    path: '/group/:id',
+    name: 'record-page',
+    component: recordPage
+  },
+  {
     path: '/group',
     name: 'group-page',
     component: groupPage

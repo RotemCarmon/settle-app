@@ -73,18 +73,18 @@ async function updateRecord(record) {
 
 }
 
-async function calculate() {
-    const records = await getRecords();
+// async function calculate() {
+//     const records = await getRecords();
 
-    return records.reduce((acc, record) => {
-        let amount = record.amount;
-       if(record.owner === gLoggedInUser){
-           if(!acc[record.mode]) acc[record.mode] = 0 
-           acc[record.mode] += amount
-       }
-        return acc;
-    }, {split:0, full:0});
-}
+//     return records.reduce((acc, record) => {
+//         let amount = record.amount;
+//        if(record.owner === gLoggedInUser){
+//            if(!acc[record.mode]) acc[record.mode] = 0 
+//            acc[record.mode] += amount
+//        }
+//         return acc;
+//     }, {split:0, full:0});
+// }
 
 
 export default {
@@ -92,32 +92,32 @@ export default {
     addRecord,
     removeRecord,
     updateRecord,
-    calculate
+    // calculate
 };
 
-async function _createRecord(date, description, amount, owner) {
-    let prevId = await _getLastId();
-    return {
-        _id: ++prevId,
-        description,
-        date,
-        amount,
-        owner,
-        mode: 'split'
-    };
-}
+// async function _createRecord(date, description, amount, owner) {
+//     let prevId = await _getLastId();
+//     return {
+//         _id: ++prevId,
+//         description,
+//         date,
+//         amount,
+//         owner,
+//         mode: 'split'
+//     };
+// }
 
-async function _getLastId() {
-    const records = await getRecords();
-    const ids = records.map((record) => {
-        return record._id;
-    });
-    return Math.max(...ids);
-}
+// async function _getLastId() {
+//     const records = await getRecords();
+//     const ids = records.map((record) => {
+//         return record._id;
+//     });
+//     return Math.max(...ids);
+// }
 
-function formatDate(date) {
-    return date
-        .split('-')
-        .reverse()
-        .join('/');
-}
+// function formatDate(date) {
+//     return date
+//         .split('-')
+//         .reverse()
+//         .join('/');
+// }

@@ -11,7 +11,7 @@
 
 <script>
 import recordPreview from './record-preview.vue'
-import modeHeader from './mode-header.vue'
+import modeHeader from '../mode-header.vue'
 export default {
   props: {
     records: Array
