@@ -1,8 +1,28 @@
 <template>
-  <!-- <div id="nav">
-  </div> -->
-  <router-view />
+  <header-cmp />
+  <main class="main-app-container">
+    <router-view @setUser="setUser" />
+  </main>
 </template>
+<script>
+import headerCmp from "./components/common/header-cmp";
+export default {
+  name: "App",
+  data() {
+    return {
+      user: null
+    };
+  },
+  methods: {
+    setUser(user) {
+      this.user = user;
+    }
+  },
+  components: {
+    headerCmp
+  }
+};
+</script>
 
 <style lang="scss">
 #app {

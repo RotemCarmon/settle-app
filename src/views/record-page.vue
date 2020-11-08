@@ -1,7 +1,7 @@
 <template>
     <section class="main-container">
         <!-- <status-bar :breakdown="breakdown" /> -->
-        <header-cmp />
+        <!-- <header-cmp /> -->
         <h2 class="transaction-header">Transactions</h2>
         <record-add />
         <record-list v-if="recordsToShow" :records="recordsToShow" />
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import headerCmp from '../components/common/header-cmp';
+
 import recordService from '../services/recordService.js';
 import statusBar from '../components/status/status-bar';
 import recordList from '../components/record-list';
@@ -58,7 +58,7 @@ export default {
     components: {
         recordList,
         recordAdd,
-        headerCmp
+        // headerCmp
         // statusBar,
     },
 };

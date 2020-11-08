@@ -1,18 +1,26 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import recordApp from '../views/record-app.vue'
+import recordPage from '../views/record-page.vue'
+import groupPage from '../views/group-page.vue'
 import loginPage from '../views/login-page.vue'
+import homePage from '../views/home-page.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'record-app',
-    component: recordApp
+    name: 'home-page',
+    component: homePage
   },
   {
     path: '/login',
     name: 'login-page',
     component: loginPage
-  }
+  },
+  {
+    path: '/group',
+    name: 'group-page',
+    component: groupPage
+  },
+
 ]
 
 const router = createRouter({

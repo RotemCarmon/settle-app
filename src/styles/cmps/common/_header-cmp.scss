@@ -1,6 +1,11 @@
 .header-container {
   background-color: #26887b;
   padding: 26px;
+  margin-bottom: 20px;
+  .home-logo {
+      height: 100%;
+      cursor: pointer;
+  }
     .header {
         flex-direction: row-reverse;
         color: white;

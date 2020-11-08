@@ -1,6 +1,9 @@
 .btn{
-
-  &:hover{
-    cursor: pointer;
+padding: 8px 12px;
+background-color: #1a1a1a;
+color: #ebebeb;
+&:hover{
+  cursor: pointer;
+  background-color: #222222;
   }
 }
