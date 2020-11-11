@@ -10,6 +10,7 @@
 
 // PAGES 
 @import "./pages/home-page";
+@import "./pages/group-page";
 
 // COMPONENTS
 
@@ -17,6 +18,7 @@
 @import "./cmps/common/user-avatar";
 
 @import "./cmps/group/group-preview";
+@import "./cmps/group/group-add";
 
 @import "./cmps/record/record-preview";
 @import "./cmps/record/record-add";

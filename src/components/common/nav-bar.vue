@@ -1,8 +1,11 @@
 <template>
-  <section class="nav-bar-container" :class="openNav"> 
+  <section class="nav-bar-container" :class="openNav">
     <nav class=" nav-bar flex column" @click="navigate">
-      <router-link  to="/">Home</router-link>
-      <router-link :to="{path:'/group'}">My Groups</router-link>
+      <router-link v-if="!loggedInUser" to="/login">Login</router-link>
+      <router-link v-else @click="$store.dispatch('logout')" to="/">Logout</router-link>
+
+      <router-link to="/">Home</router-link>
+      <router-link :to="{ path: '/group' }">My Groups</router-link>
       <router-link to="#">My Settles</router-link>
       <router-link to="#">Archive</router-link>
     </nav>
@@ -10,7 +13,6 @@
 </template>
 
 <script>
-
 export default {
   name: "nav-bar",
   props: {
@@ -20,14 +22,17 @@ export default {
     }
   },
   methods: {
-    navigate(){
-      this.$emit('navigate')
+    navigate() {
+      this.$emit("navigate");
     }
   },
-  computed:{
-    openNav(){
-      return {open: this.isOpen}
+  computed: {
+    openNav() {
+      return { open: this.isOpen };
     },
+    loggedInUser() {
+      return this.$store.getters.loggedinUser;
+    }
   }
 };
 </script>
@@ -39,13 +44,12 @@ export default {
   top: 92px;
   right: 0;
   padding: 8px;
-  background-color: #26887b96;
+  background-color: #26887ba9;
   font-size: 1.6rem;
   transform: translateX(100%);
-  transition: transform .6s;
+  transition: transform 0.6s;
   &.open {
-  transform: translateX(0);
-
+    transform: translateX(0);
   }
   .nav-bar {
     & > * {

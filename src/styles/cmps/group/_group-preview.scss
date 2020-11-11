@@ -1,17 +1,16 @@
 .group-preview-container{
-  margin-bottom: 8px;
+  margin: 8px;
   width: 100%;
-  // background-color: gray;
   border: 1px solid gray;
-  // padding: 24px;
   width: 140px;
   height: 140px;
+
   h1{
     margin: 8px 0;
   }
   .users-avatar{
     width: 100%;
-    padding:16px 8px;
+    padding:16px;
     background-color: lightgray;
   }
 }

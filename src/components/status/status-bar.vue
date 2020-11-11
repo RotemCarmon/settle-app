@@ -1,13 +1,13 @@
 <template>
     <section v-if="breakdown" class="status-bar-container">
         <div class="status-bar main-layout flex space-between">
-            <div class="total-container">
+            <!-- <div class="total-container">
                 <sum-status :amount="total" />
             </div>
             <div class="break-down-container flex">
                 <sum-status title="This amount is to be split between all group members" :amount="breakdown.split" :icon="'split-money'" />
                 <sum-status title="This amount you should be refunded in full" :amount="breakdown.full" :icon="'money'" />
-            </div>
+            </div> -->
         </div>
     </section>
 </template>
@@ -30,13 +30,16 @@ export default {
         },
     },
     components: {
-        sumStatus,
+        // sumStatus,
     },
 };
 </script>
 
 <style lang="scss" scoped>
 .status-bar-container {
+    height: 40px;
+    position: sticky;
+    bottom: 0;
     background-color: #26887b;
     padding: 8px;
 }

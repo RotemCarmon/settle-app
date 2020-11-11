@@ -10,15 +10,6 @@
       margin-inline-end: 5px;
   }
   .add-btn {
-    border: 1px solid lightgray;
-    color: #f1f1f1;
-    background-color: #0e0e0e;
-    margin-inline-start: 8px;
-    padding: 5px 8px;
-    border-radius: 50%;
-    &:hover {
-        cursor: pointer;
-        background-color: rgb(209, 208, 208);
-    }
+    cursor: pointer;
   }
 }

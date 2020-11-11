@@ -9,7 +9,7 @@
             />
 
             <editable-content v-model="copyRecord.date" />
-            <editable-content v-model="copyRecord.description" />
+            <editable-content v-model="copyRecord.desc" />
             <span class="currency-sign">&#8362;</span>
             <editable-content v-model="copyRecord.amount" :type="'price'" />
         </div>

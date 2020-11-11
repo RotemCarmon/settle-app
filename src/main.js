@@ -4,10 +4,14 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
-import './styles/main.scss';
-// Vue.config.productionTip = false;
+import { fontAwesomeIcon } from "@/plugins/font-awesome";
 
-createApp(App)
-  .use(store)
-  .use(router)
-  .mount('#app')
+import './styles/main.scss';
+
+const app = createApp(App)
+
+app.use(store)
+   .use(router)
+   .mount('#app')
+
+app.component('fa', fontAwesomeIcon);

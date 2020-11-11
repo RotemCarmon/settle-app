@@ -1,10 +1,13 @@
 import httpService from './httpService';
 
-async function getGroups() {
-  const userId = "5f8970c04f684a22553e9028";
-  return httpService.get(`group?id=${userId}`)
+async function getGroups(userId) {
+  return await httpService.get(`group?id=${userId}`)
+}
+async function createGroup(groupInfo){
+  return await httpService.post('group/create', groupInfo)
 }
 
 export default {
-  getGroups
+  getGroups,
+  createGroup
 }

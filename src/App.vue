@@ -1,6 +1,6 @@
 <template>
   <header-cmp @toggle-nav="toggleScreen" />
-  <main class="main-app-container">
+  <main class="main-container">
     <router-view @setUser="setUser" />
   </main>
 
@@ -27,7 +27,6 @@ export default {
       this.user = user;
     },
     toggleScreen() {
-      console.log('NAV');
       this.isNavOpen = !this.isNavOpen;
     }
   },
@@ -47,7 +46,7 @@ export default {
 <style lang="scss">
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 1.2s;
+  transition: opacity 0.6s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;

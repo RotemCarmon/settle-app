@@ -48,8 +48,9 @@ export default {
         // },
     },
     actions: {
-        async loadRecords(context) {
-            const records = await recordService.getRecords();
+        async loadRecords(context, {groupId}) {
+            
+            const records = await recordService.getRecords(groupId);
             context.commit({ type: 'setRecords', records });
         },
         async removeRecord(context, { recordId }) {
@@ -57,9 +58,12 @@ export default {
             context.commit({ type: 'removeRecord', recordId });
         },
         async addRecord(context, { record }) {
-            const newRecord = await recordService.addRecord(record);
-            console.log("addRecord -> newRecord", newRecord)
-            context.commit({ type: 'addRecord', newRecord });
+            console.log  ('Adding a record - user Id', context.rootState.userStore.loggedinUser);
+            console.log ('Adding a record - group Id', context.rootState.groupStore.currGroupId );
+            console.log('Adding a record - settle Id', );
+            // const newRecord = await recordService.addRecord(record);
+            // console.log("addRecord -> newRecord", newRecord)
+            // context.commit({ type: 'addRecord', newRecord });
         },
         async updateRecord(context, { record }) {
             const updatedRecord = await recordService.updateRecord(record);

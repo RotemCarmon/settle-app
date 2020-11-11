@@ -1,56 +1,57 @@
 import httpService from './httpService'
 
-console.log('Record Service');
+// const RECORDS = [
+//     {
+//         _id: 5,
+//         date: '28/09/2020',
+//         description: 'meat',
+//         amount: 140,
+//         owner: 'rotem',
+//         mode: 'split',
+//     },
+//     {
+//         _id: 4,
+//         date: '02/10/2020',
+//         description: 'dog food',
+//         amount: 230,
+//         owner: 'rotem',
+//         mode: 'full',
+//     },
+//     {
+//         _id: 3,
+//         date: '10/10/2020',
+//         description: 'rent',
+//         amount: 4000,
+//         owner: 'rotem',
+//         mode: 'split',
+//     },
+//     {
+//         _id: 2,
+//         date: '7/10/2020',
+//         description: 'shmpoo',
+//         amount: 149,
+//         owner: 'rotem',
+//         mode: 'full',
+//     },
+//     {
+//         _id: 1,
+//         date: '8/10/2020',
+//         description: 'Falafel',
+//         amount: 20,
+//         owner: 'rotem',
+//         mode: 'split',
+//     },
+// ];
+// window.records = RECORDS;
 
-const RECORDS = [
-    {
-        _id: 5,
-        date: '28/09/2020',
-        description: 'meat',
-        amount: 140,
-        owner: 'rotem',
-        mode: 'split',
-    },
-    {
-        _id: 4,
-        date: '02/10/2020',
-        description: 'dog food',
-        amount: 230,
-        owner: 'rotem',
-        mode: 'full',
-    },
-    {
-        _id: 3,
-        date: '10/10/2020',
-        description: 'rent',
-        amount: 4000,
-        owner: 'rotem',
-        mode: 'split',
-    },
-    {
-        _id: 2,
-        date: '7/10/2020',
-        description: 'shmpoo',
-        amount: 149,
-        owner: 'rotem',
-        mode: 'full',
-    },
-    {
-        _id: 1,
-        date: '8/10/2020',
-        description: 'Falafel',
-        amount: 20,
-        owner: 'rotem',
-        mode: 'split',
-    },
-];
-window.records = RECORDS;
+// var gLoggedInUser = 'rotem'
 
-var gLoggedInUser = 'rotem'
-
-async function getRecords() {
-    // return httpService.get(`record?${queryParams}`)
-    return httpService.get(`record`)
+async function getRecords(groupId) {
+    const queryParams = new URLSearchParams();
+    if(groupId) {
+        queryParams.append('groupId', groupId)
+    }
+    return httpService.get(`record?${queryParams}`)
 }
 
 async function removeRecord(recordId) {
@@ -115,9 +116,9 @@ export default {
 //     return Math.max(...ids);
 // }
 
-// function formatDate(date) {
-//     return date
-//         .split('-')
-//         .reverse()
-//         .join('/');
-// }
+function formatDate(date) {
+    return date
+        .split('-')
+        .reverse()
+        .join('/');
+}

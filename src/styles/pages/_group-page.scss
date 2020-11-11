@@ -1,0 +1,15 @@
+.no-groups-to-show {
+    margin-top: 80px;
+}
+.group-page-header {
+    position: relative;
+    .creat-new-group {
+        position: absolute;
+        right: 3%;
+        height: 25px;
+        top:50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+
+    }
+}

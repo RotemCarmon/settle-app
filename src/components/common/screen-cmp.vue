@@ -16,6 +16,6 @@ export default {
     right: 0;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(32, 32, 32, 0.705);
+    background-color: rgba(32, 32, 32, 0.767);
   }
 </style>

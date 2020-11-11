@@ -18,6 +18,7 @@ export default {
   },
   methods: {
     goToGroup(){
+      this.$store.commit('setCurrGroup', {groupId: this.group._id})
       this.$router.push(`/group/${this.group._id}`)
     }
   },

@@ -1,5 +1,5 @@
 <template>
-  <section class="group-list-container  main-layout">
+  <section class="group-list-container flex wrap">
     <group-preview
       v-for="group in groups"
       :group="group"
