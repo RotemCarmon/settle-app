@@ -48,9 +48,11 @@ export default {
         // },
     },
     actions: {
-        async loadRecords(context, {groupId}) {
-            
-            const records = await recordService.getRecords(groupId);
+        async loadRecords(context, {filterBy}) {
+            const userId = context.rootState.userStore.loggedinUser._id
+            filterBy.userId = userId
+            console.log("loadRecords -> filterBy", filterBy)
+            const records = await recordService.getRecords(filterBy);
             context.commit({ type: 'setRecords', records });
         },
         async removeRecord(context, { recordId }) {

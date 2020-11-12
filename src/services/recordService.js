@@ -46,10 +46,12 @@ import httpService from './httpService'
 
 // var gLoggedInUser = 'rotem'
 
-async function getRecords(groupId) {
+async function getRecords(filterBy) {
     const queryParams = new URLSearchParams();
-    if(groupId) {
+    if(filterBy) {
+        const {groupId, userId} = filterBy
         queryParams.append('groupId', groupId)
+        queryParams.append('userId', userId)
     }
     return httpService.get(`record?${queryParams}`)
 }

@@ -22,13 +22,14 @@ import { handleError } from "vue";
 export default {
   created() {
     const groupId = this.$route.params.id;
-
-    this.loadRecords(groupId);
+    const filterBy = { groupId }
+    this.loadRecords(filterBy);
     // this.calculateBreakdown();
   },
   methods: {
-    async loadRecords(groupId) {
-      this.$store.dispatch("loadRecords", { groupId });
+    async loadRecords(filterBy) {
+      console.log("loadRecords -> filterBy", filterBy)
+      this.$store.dispatch("loadRecords", {filterBy});
     },
     async addRecord(payload) {
       const { date, description, amount, owner } = payload;
