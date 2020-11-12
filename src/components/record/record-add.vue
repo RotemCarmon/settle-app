@@ -1,7 +1,7 @@
 <template>
   <div class="record-add-container flex main-layout">
     <input v-model="record.date" type="date" placeholder="Date" />
-    <input v-model="record.description" type="text" placeholder="Description" />
+    <input v-model="record.desc" type="text" placeholder="Description" />
     <input v-model.number="record.amount" type="number" placeholder="Amount" />
     <input v-model="record.owner" hidden type="text" placeholder="Owner" />
     <fa @click="onAddRecord" icon="plus-square" class="add-btn" />
@@ -14,7 +14,7 @@ export default {
     return {
       record: {
         date: "",
-        description: "",
+        desc: "",
         amount: "",
         comment: ""
       }

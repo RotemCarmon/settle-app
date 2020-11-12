@@ -1,9 +1,12 @@
 import groupService from '@/services/groupService.js';
 
+var localGroupId = null;
+if (sessionStorage.groupId) localGroupId = JSON.parse(sessionStorage.groupId);
+
 export default {
   state: {
     groups: null,
-    currGroupId: null
+    currGroupId: localGroupId
   },
   getters: {
     getGroups(state) {
@@ -16,6 +19,7 @@ export default {
     },
     setCurrGroup(state, { groupId }) {
       state.currGroupId = groupId;
+      sessionStorage.setItem('groupId', JSON.stringify(groupId)) // saving groupId in the sessionStorage - is it ok to do it here??
     },
     addGroup(state, newGroup) {
       console.log("addGroup -> payload", newGroup)
