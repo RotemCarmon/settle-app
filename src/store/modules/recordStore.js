@@ -58,12 +58,15 @@ export default {
             context.commit({ type: 'removeRecord', recordId });
         },
         async addRecord(context, { record }) {
-            console.log  ('Adding a record - user Id', context.rootState.userStore.loggedinUser);
-            console.log ('Adding a record - group Id', context.rootState.groupStore.currGroupId );
-            console.log('Adding a record - settle Id', );
-            // const newRecord = await recordService.addRecord(record);
-            // console.log("addRecord -> newRecord", newRecord)
-            // context.commit({ type: 'addRecord', newRecord });
+            // console.log  ('Adding a record - user Id', context.rootState.userStore.loggedinUser);
+            // console.log ('Adding a record - group Id', context.rootState.groupStore.currGroupId );
+            // console.log('Adding a record - settle Id', );
+            record.groupId = context.rootState.groupStore.currGroupId;
+            record.userId = context.rootState.userStore.loggedinUser._id
+            if(!record.groupId || !record.userId) return console.log('Invalid group or user id');
+            const newRecord = await recordService.addRecord(record);
+            console.log("addRecord -> newRecord", newRecord)
+            context.commit({ type: 'addRecord', newRecord });
         },
         async updateRecord(context, { record }) {
             const updatedRecord = await recordService.updateRecord(record);

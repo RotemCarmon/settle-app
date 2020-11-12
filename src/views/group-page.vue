@@ -6,11 +6,12 @@
       icon="plus-square"
       type="far"
       class="creat-new-group"
+      title="Create new group"
     />
   </div>
   <group-add v-if="isGroupAdd" @close-cmp="toggleGroupAdd" />
   <group-list v-if="groupsToShow" :groups="groupsToShow" />
-  <div class="no-groups-to-show">This user has no groups yet...</div>
+  <div v-if="!groupsToShow" class="no-groups-to-show">This user has no groups yet...</div>
 </template>
 
 <script>
